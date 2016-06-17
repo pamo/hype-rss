@@ -21,11 +21,11 @@ const fetchJSON = (path) => {
       const body = JSON.parse(data.join(''));
       let transformedResponse = [];
       forEach(body, (item) => {
-        const track = pick(item, ["artist", "title", "dateloved", "posturl"]);
+        const track = pick(item, ["artist", "title", "dateloved", "mediaid"]);
         const title = `${track.artist} - ${track.title}`;
         feed.item({
+          guid: track.mediaid,
           title,
-          url: track.posturl,
           date: new Date(track.dateloved * 1000).toUTCString()
         });
       });
