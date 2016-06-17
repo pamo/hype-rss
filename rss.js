@@ -32,9 +32,9 @@ var fetchJSON = function fetchJSON(path) {
 
   var feed = new _rss2.default({
     title: 'pmocampo\'s ' + path + ' tracks on Hype Machine',
-    link: 'http://hypem.com/pmocampo',
+    link: 'http://hype-rss.herokuapp.com/' + path,
     feed_url: 'http://hype-rss.herokuapp.com/' + path,
-    site_url: 'http://hype-rss.herokuapp.com/'
+    site_url: 'http://hype-rss.herokuapp.com/' + path
   });
 
   _http2.default.get('http://hypem.com/playlist/' + path + '/pmocampo/json/1/data.js', function (response) {

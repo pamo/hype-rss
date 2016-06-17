@@ -10,9 +10,9 @@ const fetchJSON = (path) => {
 
   let feed = new RSS({
     title: `pmocampo\'s ${path} tracks on Hype Machine`,
-    link: 'http://hypem.com/pmocampo',
+    link: `http://hype-rss.herokuapp.com/${path}`,
     feed_url: `http://hype-rss.herokuapp.com/${path}`,
-    site_url: 'http://hype-rss.herokuapp.com/'
+    site_url: `http://hype-rss.herokuapp.com/${path}`
   });
 
   http.get(`http://hypem.com/playlist/${path}/pmocampo/json/1/data.js`, (response) => {
