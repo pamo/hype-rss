@@ -26,7 +26,7 @@ var _express2 = _interopRequireDefault(_express);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var fetchJSON = function fetchJSON(path) {
+var fetchJSON = function fetchJSON(path, appResponse) {
 
   var feed = new _rss2.default({
     title: 'pmocampo\'s ' + path + ' tracks on Hype Machine',
@@ -59,7 +59,8 @@ var fetchJSON = function fetchJSON(path) {
         indent: true
       });
       console.log(xml);
-      return xml;
+      appResponse.set('Content-Type', 'application/rss+xml');
+      appResponse.send(xml);
     });
   }).on('error', function (e) {
     console.log('Got error: ' + e.message);
@@ -69,15 +70,11 @@ var fetchJSON = function fetchJSON(path) {
 var app = (0, _express2.default)();
 
 app.get('/loved', function (req, res) {
-  var xml = fetchJSON('loved');
-  res.set('Content-Type', 'application/rss+xml');
-  res.send(xml);
+  fetchJSON('loved', res);
 });
 
 app.get('/obsessed', function (req, res) {
-  var xml = fetchJSON('obsessed');
-  res.set('Content-Type', 'application/rss+xml');
-  res.send(xml);
+  fetchJSON('obsessed', res);
 });
 
 var port = process.env.PORT || 8080;

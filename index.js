@@ -5,7 +5,7 @@ import forEach from 'lodash.foreach';
 import dropRight from 'lodash.dropright';
 import express from 'express';
 
-const fetchJSON = (path) => {
+const fetchJSON = (path, appResponse) => {
 
   let feed = new RSS({
     title: `pmocampo\'s ${path} tracks on Hype Machine`,
@@ -38,7 +38,8 @@ const fetchJSON = (path) => {
         indent: true
       });
       console.log(xml);
-      return xml;
+      appResponse.set('Content-Type', 'application/rss+xml');
+      appResponse.send(xml);
     });
   }).on('error', (e) => {
     console.log(`Got error: ${e.message}`);
@@ -48,15 +49,11 @@ const fetchJSON = (path) => {
 var app = express();
 
 app.get('/loved', function(req, res) {
-  const xml = fetchJSON('loved');
-  res.set('Content-Type', 'application/rss+xml');
-  res.send(xml);
+  fetchJSON('loved', res);
 });
 
 app.get('/obsessed', function(req, res) {
-  const xml = fetchJSON('obsessed');
-  res.set('Content-Type', 'application/rss+xml');
-  res.send(xml);
+  fetchJSON('obsessed', res);
 });
 
 const port = process.env.PORT || 8080;
