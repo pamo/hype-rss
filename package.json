@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "rss.js",
+  "engines": {
+    "node": "6.1.0"
+  },
   "scripts": {
     "build": "npm install && ./node_modules/.bin/babel index.js -o rss.js",
     "start": "npm run build && node rss.js",
