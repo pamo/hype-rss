@@ -4,7 +4,6 @@ import pick from 'lodash.pick';
 import forEach from 'lodash.foreach';
 import dropRight from 'lodash.dropright';
 import express from 'express';
-let xml;
 
 const fetchJSON = (path) => {
 
@@ -35,10 +34,11 @@ const fetchJSON = (path) => {
           });
         }
       });
-      xml = feed.xml({
+      const xml = feed.xml({
         indent: true
       });
       console.log(xml);
+      return xml;
     });
   }).on('error', (e) => {
     console.log(`Got error: ${e.message}`);
@@ -48,13 +48,13 @@ const fetchJSON = (path) => {
 var app = express();
 
 app.get('/loved', function(req, res) {
-  fetchJSON('loved');
+  const xml = fetchJSON('loved');
   res.set('Content-Type', 'application/rss+xml');
   res.send(xml);
 });
 
 app.get('/obsessed', function(req, res) {
-  fetchJSON('obsessed');
+  const xml = fetchJSON('obsessed');
   res.set('Content-Type', 'application/rss+xml');
   res.send(xml);
 });

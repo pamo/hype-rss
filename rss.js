@@ -26,8 +26,6 @@ var _express2 = _interopRequireDefault(_express);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var xml = void 0;
-
 var fetchJSON = function fetchJSON(path) {
 
   var feed = new _rss2.default({
@@ -57,10 +55,11 @@ var fetchJSON = function fetchJSON(path) {
           });
         }
       });
-      xml = feed.xml({
+      var xml = feed.xml({
         indent: true
       });
       console.log(xml);
+      return xml;
     });
   }).on('error', function (e) {
     console.log('Got error: ' + e.message);
@@ -70,13 +69,13 @@ var fetchJSON = function fetchJSON(path) {
 var app = (0, _express2.default)();
 
 app.get('/loved', function (req, res) {
-  fetchJSON('loved');
+  var xml = fetchJSON('loved');
   res.set('Content-Type', 'application/rss+xml');
   res.send(xml);
 });
 
 app.get('/obsessed', function (req, res) {
-  fetchJSON('obsessed');
+  var xml = fetchJSON('obsessed');
   res.set('Content-Type', 'application/rss+xml');
   res.send(xml);
 });
