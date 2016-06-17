@@ -42,11 +42,12 @@ var fetchJSON = function fetchJSON(path) {
       var body = JSON.parse(data.join(''));
       var transformedResponse = [];
       (0, _lodash4.default)(body, function (item) {
-        var track = (0, _lodash2.default)(item, ["artist", "title", "dateloved"]);
+        var track = (0, _lodash2.default)(item, ["artist", "title", "dateloved", "posturl"]);
         var title = track.artist + ' - ' + track.title;
         feed.item({
           title: title,
-          date: new Date(track.dateloved * 1000)
+          url: track.posturl,
+          date: new Date(track.dateloved * 1000).toUTCString()
         });
       });
       xml = feed.xml({
