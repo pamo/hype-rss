@@ -73,7 +73,7 @@ app.get('/obsessed', function (req, res) {
   res.send(xml);
 });
 
-var port = 8080;
+var port = process.env.PORT || 8080;
 app.listen(port, function () {
   console.log('Listening on port ' + port + '!');
 });
