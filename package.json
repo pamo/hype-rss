@@ -4,7 +4,7 @@
   "description": "",
   "main": "rss.js",
   "scripts": {
-    "build": "babel index.js -o rss.js",
+    "build": "node_modules/babel-cli/bin/babel.js index.js -o rss.js",
     "start": "npm run build && node rss.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
