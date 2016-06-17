@@ -5,6 +5,7 @@
   "main": "rss.js",
   "scripts": {
     "build": "babel index.js -o rss.js",
+    "start": "npm run build && node rss.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
