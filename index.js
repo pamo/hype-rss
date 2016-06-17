@@ -11,8 +11,8 @@ const feed = new RSS({
 });
 let xml;
 
-const fetchJSON = () => {
-  http.get('http://hypem.com/playlist/loved/pmocampo/json/1/data.js', (response) => {
+const fetchJSON = (path) => {
+  http.get(`http://hypem.com/playlist/${path}/pmocampo/json/1/data.js`, (response) => {
     let data = [];
     response.on('data', (chunk) => {
       data.push(chunk);
@@ -40,8 +40,14 @@ const fetchJSON = () => {
 
 var app = express();
 
-app.get('/', function(req, res) {
-  fetchJSON();
+app.get('/loved', function(req, res) {
+  fetchJSON('loved');
+  res.set('Content-Type', 'application/rss+xml');
+  res.send(xml);
+});
+
+app.get('/obsessed', function(req, res) {
+  fetchJSON('obsessed');
   res.set('Content-Type', 'application/rss+xml');
   res.send(xml);
 });

@@ -32,8 +32,8 @@ var feed = new _rss2.default({
 });
 var xml = void 0;
 
-var fetchJSON = function fetchJSON() {
-  _http2.default.get('http://hypem.com/playlist/loved/pmocampo/json/1/data.js', function (response) {
+var fetchJSON = function fetchJSON(path) {
+  _http2.default.get('http://hypem.com/playlist/' + path + '/pmocampo/json/1/data.js', function (response) {
     var data = [];
     response.on('data', function (chunk) {
       data.push(chunk);
@@ -61,8 +61,14 @@ var fetchJSON = function fetchJSON() {
 
 var app = (0, _express2.default)();
 
-app.get('/', function (req, res) {
-  fetchJSON();
+app.get('/loved', function (req, res) {
+  fetchJSON('loved');
+  res.set('Content-Type', 'application/rss+xml');
+  res.send(xml);
+});
+
+app.get('/obsessed', function (req, res) {
+  fetchJSON('obsessed');
   res.set('Content-Type', 'application/rss+xml');
   res.send(xml);
 });
