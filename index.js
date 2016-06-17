@@ -7,7 +7,9 @@ import express from 'express';
 
 const feed = new RSS({
   title: 'pmocampo\'s favorite tracks on Hype Machine',
-  link: 'http://hypem.com/pmocampo'
+  link: 'http://hypem.com/pmocampo',
+  feed_url: 'http://hype-rss.herokuapp.com/',
+  site_url: 'http://hype-rss.herokuapp.com/'
 });
 let xml;
 
@@ -21,13 +23,15 @@ const fetchJSON = (path) => {
       const body = JSON.parse(data.join(''));
       let transformedResponse = [];
       forEach(body, (item) => {
-        const track = pick(item, ["artist", "title", "dateloved", "mediaid"]);
-        const title = `${track.artist} - ${track.title}`;
-        feed.item({
-          guid: track.mediaid,
-          title,
-          date: new Date(track.dateloved * 1000).toUTCString()
-        });
+        if (!item.version) {
+          const track = pick(item, ["artist", "title", "dateloved", "mediaid"]);
+          const title = `${track.artist} - ${track.title}`;
+          feed.item({
+            guid: track.mediaid,
+            title,
+            date: new Date(track.dateloved * 1000).toUTCString()
+          });
+        }
       });
       xml = feed.xml({
         indent: true
