@@ -1,0 +1,29 @@
+{
+  "name": "hype-rss",
+  "version": "1.0.0",
+  "description": "",
+  "main": "rss.js",
+  "scripts": {
+    "build": "babel index.js -o rss.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "rss",
+    "hype",
+    "machine",
+    "json"
+  ],
+  "author": "Pamela Ocampo",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "lodash.dropright": "^4.0.4",
+    "lodash.foreach": "^4.3.0",
+    "lodash.pick": "^4.2.1",
+    "rss": "^1.2.1"
+  }
+}
