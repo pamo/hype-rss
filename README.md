@@ -9,7 +9,7 @@ The XML feeds can be used with [IFTTT's Feed Channel](https://ifttt.com/feed) to
 
 Code is transpiled with babel before being deployed to Heroku.
 
-* [Loved Tracks](http://hype-rss.herokuapp.com/loved/) | [W3C Valid](validator.w3.org/feed/check.cgi?url=http%3A%2F%2Fhype-rss.herokuapp.com%2Floved)
-* [Obsessed Tracks](http://hype-rss.herokuapp.com/obsessed/) | [W3C Valid](validator.w3.org/feed/check.cgi?url=http%3A%2F%2Fhype-rss.herokuapp.com%2Fobsessed)
+* [Loved Tracks](http://hype-rss.herokuapp.com/loved/) | [W3C Valid](http://validator.w3.org/feed/check.cgi?url=http%3A%2F%2Fhype-rss.herokuapp.com%2Floved)
+* [Obsessed Tracks](http://hype-rss.herokuapp.com/obsessed/) | [W3C Valid](http://validator.w3.org/feed/check.cgi?url=http%3A%2F%2Fhype-rss.herokuapp.com%2Fobsessed)
 
 
