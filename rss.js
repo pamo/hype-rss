@@ -47,10 +47,11 @@ var fetchJSON = function fetchJSON(path) {
       var transformedResponse = [];
       (0, _lodash4.default)(body, function (item) {
         if (item.mediaid) {
-          var track = (0, _lodash2.default)(item, ["artist", "title", "dateloved", "mediaid"]);
+          var track = (0, _lodash2.default)(item, ["artist", "title", "dateloved", "mediaid", "posturl"]);
           var title = track.artist + ' - ' + track.title;
           feed.item({
             guid: track.mediaid,
+            url: track.posturl,
             title: title,
             date: new Date(track.dateloved * 1000).toUTCString()
           });
