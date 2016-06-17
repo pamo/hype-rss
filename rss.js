@@ -31,7 +31,7 @@ var xml = void 0;
 var fetchJSON = function fetchJSON(path) {
 
   var feed = new _rss2.default({
-    title: 'pmocampo\'s favorite tracks on Hype Machine',
+    title: 'pmocampo\'s ' + path + ' tracks on Hype Machine',
     link: 'http://hypem.com/pmocampo',
     feed_url: 'http://hype-rss.herokuapp.com/' + path,
     site_url: 'http://hype-rss.herokuapp.com/'

@@ -8,8 +8,8 @@ let xml;
 
 const fetchJSON = (path) => {
 
-  const feed = new RSS({
-    title: 'pmocampo\'s favorite tracks on Hype Machine',
+  let feed = new RSS({
+    title: `pmocampo\'s ${path} tracks on Hype Machine`,
     link: 'http://hypem.com/pmocampo',
     feed_url: `http://hype-rss.herokuapp.com/${path}`,
     site_url: 'http://hype-rss.herokuapp.com/'
