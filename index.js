@@ -4,16 +4,17 @@ import pick from 'lodash.pick';
 import forEach from 'lodash.foreach';
 import dropRight from 'lodash.dropright';
 import express from 'express';
-
-const feed = new RSS({
-  title: 'pmocampo\'s favorite tracks on Hype Machine',
-  link: 'http://hypem.com/pmocampo',
-  feed_url: 'http://hype-rss.herokuapp.com/',
-  site_url: 'http://hype-rss.herokuapp.com/'
-});
 let xml;
 
 const fetchJSON = (path) => {
+
+  const feed = new RSS({
+    title: 'pmocampo\'s favorite tracks on Hype Machine',
+    link: 'http://hypem.com/pmocampo',
+    feed_url: `http://hype-rss.herokuapp.com/${path}`,
+    site_url: 'http://hype-rss.herokuapp.com/'
+  });
+
   http.get(`http://hypem.com/playlist/${path}/pmocampo/json/1/data.js`, (response) => {
     let data = [];
     response.on('data', (chunk) => {
@@ -23,7 +24,7 @@ const fetchJSON = (path) => {
       const body = JSON.parse(data.join(''));
       let transformedResponse = [];
       forEach(body, (item) => {
-        if (!item.version) {
+        if (item.mediaid) {
           const track = pick(item, ["artist", "title", "dateloved", "mediaid"]);
           const title = `${track.artist} - ${track.title}`;
           feed.item({

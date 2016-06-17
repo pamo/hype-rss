@@ -26,15 +26,17 @@ var _express2 = _interopRequireDefault(_express);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var feed = new _rss2.default({
-  title: 'pmocampo\'s favorite tracks on Hype Machine',
-  link: 'http://hypem.com/pmocampo',
-  feed_url: 'http://hype-rss.herokuapp.com/',
-  site_url: 'http://hype-rss.herokuapp.com/'
-});
 var xml = void 0;
 
 var fetchJSON = function fetchJSON(path) {
+
+  var feed = new _rss2.default({
+    title: 'pmocampo\'s favorite tracks on Hype Machine',
+    link: 'http://hypem.com/pmocampo',
+    feed_url: 'http://hype-rss.herokuapp.com/' + path,
+    site_url: 'http://hype-rss.herokuapp.com/'
+  });
+
   _http2.default.get('http://hypem.com/playlist/' + path + '/pmocampo/json/1/data.js', function (response) {
     var data = [];
     response.on('data', function (chunk) {
@@ -44,7 +46,7 @@ var fetchJSON = function fetchJSON(path) {
       var body = JSON.parse(data.join(''));
       var transformedResponse = [];
       (0, _lodash4.default)(body, function (item) {
-        if (!item.version) {
+        if (item.mediaid) {
           var track = (0, _lodash2.default)(item, ["artist", "title", "dateloved", "mediaid"]);
           var title = track.artist + ' - ' + track.title;
           feed.item({
