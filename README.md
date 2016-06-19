@@ -1,9 +1,11 @@
 # hype-rss
+
 Simple express server that responds to requests with XML.
 
 Data comes from The [Hype Machine](http://hypem.com/pmocampo)'s JSON feeds.
 
 Why? The default XML feeds on The Hype Machine are cached, making content less predictable and more stale.
+Read more about why I did this on my blog. [More than just This with IFTTT](https://likescoffee.com/more-than-ifttt/)
 
 The XML feeds can be used with [IFTTT's Feed Channel](https://ifttt.com/feed) to do cool stuff ([like add tracks to a spotify playlist](https://ifttt.com/recipes/429610-save-loved-hype-machine-tracks-to-a-spotify-playlist)).
 
