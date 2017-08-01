@@ -20,14 +20,14 @@
   "author": "Pamela Ocampo",
   "license": "ISC",
   "devDependencies": {
-    "babel-cli": "^6.10.1",
-    "babel-preset-es2015": "^6.9.0"
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1"
   },
   "dependencies": {
-    "express": "^4.14.0",
-    "lodash.dropright": "^4.0.4",
-    "lodash.foreach": "^4.3.0",
-    "lodash.pick": "^4.2.1",
-    "rss": "^1.2.1"
+    "express": "^4.15.3",
+    "lodash.dropright": "^4.1.1",
+    "lodash.foreach": "^4.5.0",
+    "lodash.pick": "^4.4.0",
+    "rss": "^1.2.2"
   }
 }
